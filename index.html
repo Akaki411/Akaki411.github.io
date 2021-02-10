@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong 3D</title>
+    <link rel="shortcut icon" href="data/images/favicon.png" type="image/ico">
+    <link rel="stylesheet" href="data/css/style.css">
+    <script type="module" src="data/js/Game.js"></script>
+    <script src="data/js/Menu.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="Menu" id="menu">
+            <div class="menuBox">
+                <li>
+                    <ul><button onclick="OpenWindow(0)" class="menu_btn">Играть</button></ul>
+                    <ul><button onclick="OpenWindow(3)" class="menu_btn">Настройки</button></ul>
+                    <ul><button onclick="OpenWindow(4)" class="menu_btn">Помощь</button></ul>
+                    <ul><button onclick="ExitGame()" class="menu_btn">Выйти</button></ul>
+                </li>
+            </div>
+            <div class="Window Invisible">
+                <div class="WindowHead">
+                    <h1>Выберите режим игры</h1>
+                    <button onclick="OpenWindow(0)"><span></span></button>
+                </div>
+                <div class="WindowBody">
+                    <div class="CategoryBody">
+                        <div class="GameMode">
+                            <button onclick="OpenWindow(1)" class="SelectMode">
+                                <figure>
+                                    <figcaption>
+                                        <h2>Одиночная игра</h2>
+                                        <p>Игрок против алгоритма</p>
+                                    </figcaption>
+                                </figure>
+                            </button>
+                            <button onclick="OpenWindow(1)" class="SelectMode" id="players">
+                                <figure>
+                                    <figcaption>
+                                        <h2>Совместная игра</h2>
+                                        <p>Игра на 2 человек</p>
+                                    </figcaption>
+                                </figure>
+                            </button>
+                            <button class="SelectMode">
+                                <figure>
+                                    <figcaption>
+                                        <h2>Игра против нейросети</h2>
+                                        <p>Еще не добавлено</p>
+                                    </figcaption>
+                                </figure>
+                            </button>
+                            <div style="height: 20px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Window Invisible" id="hardLevel">
+                <div class="WindowHead">
+                    <h1>Выберите уровень сложности</h1>
+                    <button onclick="OpenWindow(1)"><span></span></button>
+                </div>
+                <div class="WindowBody">
+                    <div class="CategoryBody">
+                        <div class="GameMode">
+                            <button class="SelectMode" id="low">
+                                <figure>
+                                    <figcaption>
+                                        <h3>Простой</h3>
+                                    </figcaption>
+                                </figure>
+                            </button>
+                            <button class="SelectMode" id="middle">
+                                <figure>
+                                    <figcaption>
+                                        <h3>Средний</h3>
+                                    </figcaption>
+                                </figure>
+                            </button>
+                            <button class="SelectMode" id="hard">
+                                <figure>
+                                    <figcaption>
+                                        <h3>Высокий</h3>
+                                    </figcaption>
+                                </figure>
+                            </button>
+                            <button class="SelectMode" id="veryHard">
+                                <figure>
+                                    <figcaption>
+                                        <h3>Непроходимый</h3>
+                                    </figcaption>
+                                </figure>
+                            </button>
+                            <div style="height: 20px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Window Invisible" id="score">
+                <div class="WindowHead">
+                    <h1>Сколько баллов до победы?</h1>
+                    <button onclick="OpenWindow(2)"><span></span></button>
+                </div>
+                <div class="WindowBody" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <h1 style="padding: 20px;"><span id="num">10</span> баллов</h1>
+                    <input type="range" id="wins" min="1" max="50" value="10" style="width: 80%; height: 20px;">
+                    <div style="position: absolute; left: calc(50% - 125px); bottom: 5%;"><button class="TransparentButton" id="play">Играть</button></div>
+                </div>
+            </div>
+            <div class="Window Invisible">
+                <div class="WindowHead">
+                    <h1>Настройки</h1>
+                    <button onclick="OpenWindow(3)"><span></span></button>
+                </div>
+                <div class="WindowBody">
+                    <div class="Category">
+                        <div class="CategoryName">
+                            <h1>Звук</h1>
+                        </div>
+                        <div class="CategoryBody">
+                            <div class="SettingsElement">
+                                <div>Громкость звуков</div>
+                                <div><input type="range" value="100" id="volume"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Category">
+                        <div class="CategoryName">
+                            <h1>Графика</h1>
+                        </div>
+                        <div class="CategoryBody">
+                            <div class="SettingsElement">
+                                <div>Разрешение экрана</div>
+                                <div>
+                                    <select class="ScreenSize" id="ss">
+                                        <option value="n" selected="selected">Нативное</option>
+                                        <option value="1">3840 x 2160 (4k)</option>
+                                        <option value="2">2048 x 1080 (2k)</option>
+                                        <option value="3">1920 x 1080 (1080p)</option>
+                                        <option value="4">1366 x 768</option>
+                                        <option value="5">1280 x 1024</option>
+                                        <option value="6">1280 x 800</option>
+                                        <option value="7">1280 x 720</option>
+                                        <option value="8">1024 x 768</option>
+                                        <option value="9">800 x 600</option>
+                                        <option value="10">640 x 480</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="SettingsElement">
+                                <div>Тени</div>
+                                <div><input id="shadows" type="checkbox" checked="checked"></div>
+                            </div>
+                            <div class="SettingsElement">
+                                <div><button class="TransparentButton" onclick="ResetSettings()">Сбросить настройки</button></div>
+                                <div><button class="TransparentButton" onclick="Fullscreen()">Во весь экран</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Window Invisible">
+                <div class="WindowHead">
+                    <h1>Помощь</h1>
+                    <button onclick="OpenWindow(3)"><span></span></button>
+                </div>
+                <div class="WindowBody">
+                    <div class="Category">
+                        <div class="CategoryName">
+                            <h1>История игры</h1>
+                        </div>
+                        <div class="CategoryBody">
+                            <div class="Text">
+                                <p>Pong — одна из ранних аркадных видеоигр. Это теннисная спортивная игра с использованием простой двумерной графики, разработанная и выпущенная фирмой Atari в 1972 году. Pong называют первой в истории коммерчески успешной видеоигрой, а с её именем связывают появление индустрии интерактивных развлечений.</p>
+                                <p>Pong является простым спортивным симулятором настольного тенниса. Небольшой квадратик, заменяющий пинг-понговый мячик, двигается по экрану по линейной траектории. Если он ударяется о периметр игрового поля, то его траектория изменяется в зависимости от угла столкновения. Если шарик отбивается ракеткой игрока, то его движение дополнительно зависит от скорости и направления движения ракетки. Управление ракетками в Pong осуществляется с помощью paddle-контроллера, управляющего посредством поворота ручки вокруг своей оси. Периметр игрового поля обозначен краями экрана, а мячик не может покинуть поле через верхний или нижний край. В верхней части поля отображаются очки игроков, у каждого на своей половине экрана.</p>
+                                <p>Игровой процесс состоит в том, что игроки передвигают свои ракетки вертикально для защиты своих ворот. В начале каждого раунда мячик подаётся одному из игроков, и раунд продолжается до тех пор, пока один из игроков не заработает очко. Это происходит тогда, когда его противник не может отбить мячик. Со временем игры скорость движения мячика постепенно увеличивается, и так игра усложняется. Особенностью игры является то, что ракетки не могут дойти до самого верха экрана и отбить мячик, если он туда попадает — в этом случае противнику засчитывается очко. Вся игра в Pong длится не более трёх-четырёх минут.</p>
+                                <p>Первоначальная версия Pong разработана для двух игроков, когда каждый управляет своей ракеткой с помощью своего контроллера. В более поздних версиях игры стал доступен однопользовательский режим, когда одна из ракеток управляется компьютерным игроком.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Category">
+                        <div class="CategoryName">
+                            <h1>Управление</h1>
+                        </div>
+                        <div class="CategoryBody">
+                            <img src="data/images/keyboard.png" alt="Раскладка клавиатуры">
+                        </div>
+                        <div class="CategoryBody">
+                            <div class="Text">
+                                <p>Управление в игре меняется в зависимости от выбранного режима.</p>
+                                <p>В режиме совместной игры управление платформой осуществляется стрелками 🠕 и 🠗 для 1 игрока, и кнопками "W" и "S" для 2 игрока. А в режиме одиночной игры остается только управнение 1 игрока (🠕 и 🠗).</p>
+                                <p>Для начала игры нажмите "Пробел", а чтобы поставить на паузу клавишу "P".</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Interface Invisible" id="interface">
+            <div class="Score">
+                <h1 id="first">0</h1>
+                <h1 id="second">0</h1>
+                <div class="Space" id="space"><img src="data/images/space.png" alt="Пробел"></div>
+                <div class="P Invisible" id="pause"><img src="data/images/p.png" alt="p">
+                    <h2>Пауза</h2>
+                </div>
+            </div>
+            <div class="Panel Invisible" id="win">
+                <h1 id="status">Победа</h1>
+                <div class="SettingsElement" style="justify-content: space-around; height: 100px;">
+                    <div class="EndButtons"><button class="TransparentButton" onclick="location.reload()">Вернуться в меню</button></div>
+                    <div class="EndButtons"><button class="TransparentButton" onclick="ExitGame()">Выход</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="Game" id="canvas">
+            <canvas id="game"></canvas>
+        </div>
+    </div>
+</body>
+
+</html>
